@@ -1,0 +1,12 @@
+This is a training project: testing of the RestAPI https://yandex.ru/dev/speller/doc/dg/concepts/api-overview-docpage/
+
+The file speller_rest.py is the first task.
+No OOP or modularity is used.
+Just basics:
+test runner: pytest
+http client: python module 'requests'
+
+Most test assert expected error code parsed from the json responce of the RestAPI as per:
+https://yandex.ru/dev/speller/doc/dg/reference/error-codes-docpage/
+
+
