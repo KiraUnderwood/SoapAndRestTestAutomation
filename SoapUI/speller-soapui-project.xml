@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="5e49ad5e-43ab-4d9f-b213-64f513e410ac" activeEnvironment="Default" name="speller" resourceRoot="" soapui-version="5.5.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.actions.iface.tools.soapui.TestRunnerAction@values-local"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="Report Format(s)" value=""/>
+  <con:entry key="Host:Port" value=""/>
+  <con:entry key="Export JUnit Results" value="false"/>
+  <con:entry key="Export All" value="false"/>
+  <con:entry key="Save After" value="false"/>
+  <con:entry key="Add Settings" value="false"/>
+  <con:entry key="WSS Password Type" value=""/>
+  <con:entry key="TestSuite" value="SOAPbasics"/>
+  <con:entry key="Endpoint" value=""/>
+  <con:entry key="Select Report Type" value=""/>
+  <con:entry key="System Properties" value=""/>
+  <con:entry key="Password" value=""/>
+  <con:entry key="Print Report" value="false"/>
+  <con:entry key="Open Report" value="false"/>
+  <con:entry key="Export JUnit Results with test properties" value="false"/>
+  <con:entry key="Global Properties" value=""/>
+  <con:entry key="Project Properties" value=""/>
+  <con:entry key="Project Password" value=""/>
+  <con:entry key="TestCase" value="TestDDT"/>
+  <con:entry key="Username" value=""/>
+  <con:entry key="user-settings.xml Password" value=""/>
+  <con:entry key="TestRunner Path" value=""/>
+  <con:entry key="Environment" value="Default"/>
+  <con:entry key="Coverage Report" value="false"/>
+  <con:entry key="Enable UI" value="false"/>
+  <con:entry key="Root Folder" value=""/>
+  <con:entry key="Ignore Errors" value="false"/>
+  <con:entry key="Domain" value=""/>
+  <con:entry key="Tool Args" value=""/>
+  <con:entry key="Save Project" value="false"/>
+</xml-fragment>]]></con:setting></con:settings><con:interface xsi:type="con:WsdlInterface" id="238722fd-a81d-4750-9d8b-c09da3d37331" wsaVersion="NONE" name="SpellServiceSoap" type="wsdl" bindingName="{http://speller.yandex.net/services/spellservice}SpellServiceSoap" soapVersion="1_1" anonymous="optional" definition="https://speller.yandex.net/services/spellservice?WSDL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="https://speller.yandex.net/services/spellservice?WSDL"><con:part><con:url>https://speller.yandex.net/services/spellservice?WSDL</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://speller.yandex.net/services/spellservice" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://speller.yandex.net/services/spellservice" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://speller.yandex.net/services/spellservice">
+      <s:element name="CheckTextRequest">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="text" type="s:string"/>
+          </s:sequence>
+          <s:attribute name="lang" type="s:string"/>
+          <s:attribute name="options" type="s:int" use="optional" default="0"/>
+          <s:attribute name="format" type="s:string" use="optional" default=""/>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckTextResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SpellResult" type="tns:SpellResult"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SpellResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="error" type="tns:SpellError"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SpellError">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="word" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="s" type="s:string"/>
+        </s:sequence>
+        <s:attribute name="code" type="s:int" use="required"/>
+        <s:attribute name="pos" type="s:int" use="required"/>
+        <s:attribute name="row" type="s:int" use="required"/>
+        <s:attribute name="col" type="s:int" use="required"/>
+        <s:attribute name="len" type="s:int" use="required"/>
+      </s:complexType>
+      <s:element name="CheckTextsRequest">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="unbounded" name="text" type="s:string"/>
+          </s:sequence>
+          <s:attribute name="lang" type="s:string"/>
+          <s:attribute name="options" type="s:int" use="optional" default="0"/>
+          <s:attribute name="format" type="s:string" use="optional" default=""/>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckTextsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ArrayOfSpellResult" type="tns:ArrayOfSpellResult"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSpellResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SpellResult" type="tns:SpellResult"/>
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="checkTextSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckTextRequest"/>
+  </wsdl:message>
+  <wsdl:message name="checkTextSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckTextResponse"/>
+  </wsdl:message>
+  <wsdl:message name="checkTextsSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckTextsRequest"/>
+  </wsdl:message>
+  <wsdl:message name="checkTextsSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckTextsResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="SpellServiceSoap">
+    <wsdl:operation name="checkText">
+      <wsdl:input message="tns:checkTextSoapIn"/>
+      <wsdl:output message="tns:checkTextSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="checkTexts">
+      <wsdl:input message="tns:checkTextsSoapIn"/>
+      <wsdl:output message="tns:checkTextsSoapOut"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SpellServiceSoap" type="tns:SpellServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="checkText">
+      <soap:operation soapAction="http://speller.yandex.net/services/spellservice/checkText" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkTexts">
+      <soap:operation soapAction="http://speller.yandex.net/services/spellservice/checkTexts" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SpellServiceSoap12" type="tns:SpellServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="checkText">
+      <soap12:operation soapAction="http://speller.yandex.net/services/spellservice/checkText" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkTexts">
+      <soap12:operation soapAction="http://speller.yandex.net/services/spellservice/checkTexts" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SpellService">
+    <wsdl:port name="SpellServiceSoap" binding="tns:SpellServiceSoap">
+      <soap:address location="http://speller.yandex.net/services/spellservice"/>
+    </wsdl:port>
+    <wsdl:port name="SpellServiceSoap12" binding="tns:SpellServiceSoap12">
+      <soap12:address location="http://speller.yandex.net/services/spellservice"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://speller.yandex.net/services/spellservice</con:endpoint></con:endpoints><con:operation id="1c1df29d-36db-4535-99d2-4e4f20321c63" isOneWay="false" action="http://speller.yandex.net/services/spellservice/checkText" name="checkText" bindingOperationName="checkText" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="756dc414-f758-4efa-86b7-3f606432a927" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://speller.yandex.net/services/spellservice</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:spel="http://speller.yandex.net/services/spellservice">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <spel:CheckTextRequest lang="?" options="0" format="">\r
+         <spel:text>?</spel:text>\r
+      </spel:CheckTextRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://speller.yandex.net/services/spellservice/checkText"/><con:wsrmConfig version="1.2"/></con:call><con:call id="b5734042-e137-43db-9050-2619aef08183" name="Request 2"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://speller.yandex.net/services/spellservice</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:spel="http://speller.yandex.net/services/spellservice">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <spel:CheckTextRequest lang="ru,en" options="0" format="">\r
+         <spel:text></spel:text>\r
+      </spel:CheckTextRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://speller.yandex.net/services/spellservice/checkText"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="ab71f1db-8dbb-4019-bb09-93f5a7620204" isOneWay="false" action="http://speller.yandex.net/services/spellservice/checkTexts" name="checkTexts" bindingOperationName="checkTexts" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="d341e623-2f67-4c34-9df8-c1ef3262cc6b" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://speller.yandex.net/services/spellservice</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:spel="http://speller.yandex.net/services/spellservice">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <spel:CheckTextsRequest lang="?" options="0" format="">\r
+         <!--Zero or more repetitions:-->\r
+         <spel:text>?</spel:text>\r
+      </spel:CheckTextsRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://speller.yandex.net/services/spellservice/checkTexts"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" id="640ebe4d-4cf2-4d27-936d-f5d53d2696a2" wsaVersion="NONE" name="SpellServiceSoap12" type="wsdl" bindingName="{http://speller.yandex.net/services/spellservice}SpellServiceSoap12" soapVersion="1_2" anonymous="optional" definition="https://speller.yandex.net/services/spellservice?WSDL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="https://speller.yandex.net/services/spellservice?WSDL"><con:part><con:url>https://speller.yandex.net/services/spellservice?WSDL</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://speller.yandex.net/services/spellservice" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://speller.yandex.net/services/spellservice" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://speller.yandex.net/services/spellservice">
+      <s:element name="CheckTextRequest">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="text" type="s:string"/>
+          </s:sequence>
+          <s:attribute name="lang" type="s:string"/>
+          <s:attribute name="options" type="s:int" use="optional" default="0"/>
+          <s:attribute name="format" type="s:string" use="optional" default=""/>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckTextResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SpellResult" type="tns:SpellResult"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SpellResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="error" type="tns:SpellError"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SpellError">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="word" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="s" type="s:string"/>
+        </s:sequence>
+        <s:attribute name="code" type="s:int" use="required"/>
+        <s:attribute name="pos" type="s:int" use="required"/>
+        <s:attribute name="row" type="s:int" use="required"/>
+        <s:attribute name="col" type="s:int" use="required"/>
+        <s:attribute name="len" type="s:int" use="required"/>
+      </s:complexType>
+      <s:element name="CheckTextsRequest">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="unbounded" name="text" type="s:string"/>
+          </s:sequence>
+          <s:attribute name="lang" type="s:string"/>
+          <s:attribute name="options" type="s:int" use="optional" default="0"/>
+          <s:attribute name="format" type="s:string" use="optional" default=""/>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckTextsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ArrayOfSpellResult" type="tns:ArrayOfSpellResult"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSpellResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SpellResult" type="tns:SpellResult"/>
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="checkTextSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckTextRequest"/>
+  </wsdl:message>
+  <wsdl:message name="checkTextSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckTextResponse"/>
+  </wsdl:message>
+  <wsdl:message name="checkTextsSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckTextsRequest"/>
+  </wsdl:message>
+  <wsdl:message name="checkTextsSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckTextsResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="SpellServiceSoap">
+    <wsdl:operation name="checkText">
+      <wsdl:input message="tns:checkTextSoapIn"/>
+      <wsdl:output message="tns:checkTextSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="checkTexts">
+      <wsdl:input message="tns:checkTextsSoapIn"/>
+      <wsdl:output message="tns:checkTextsSoapOut"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SpellServiceSoap" type="tns:SpellServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="checkText">
+      <soap:operation soapAction="http://speller.yandex.net/services/spellservice/checkText" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkTexts">
+      <soap:operation soapAction="http://speller.yandex.net/services/spellservice/checkTexts" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SpellServiceSoap12" type="tns:SpellServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="checkText">
+      <soap12:operation soapAction="http://speller.yandex.net/services/spellservice/checkText" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkTexts">
+      <soap12:operation soapAction="http://speller.yandex.net/services/spellservice/checkTexts" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SpellService">
+    <wsdl:port name="SpellServiceSoap" binding="tns:SpellServiceSoap">
+      <soap:address location="http://speller.yandex.net/services/spellservice"/>
+    </wsdl:port>
+    <wsdl:port name="SpellServiceSoap12" binding="tns:SpellServiceSoap12">
+      <soap12:address location="http://speller.yandex.net/services/spellservice"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://speller.yandex.net/services/spellservice</con:endpoint></con:endpoints><con:operation id="43392575-35c7-4692-8166-037a51060bd4" isOneWay="false" action="http://speller.yandex.net/services/spellservice/checkText" name="checkText" bindingOperationName="checkText" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="0a45ebcc-486d-4829-9a3f-bb21d51f3db9" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://speller.yandex.net/services/spellservice</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:spel="http://speller.yandex.net/services/spellservice">
+   <soap:Header/>
+   <soap:Body>
+      <spel:CheckTextRequest lang="?" options="0" format="">
+         <spel:text>?</spel:text>
+      </spel:CheckTextRequest>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://speller.yandex.net/services/spellservice/SpellServiceSoap/checkTextRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="86aded59-4738-42d3-a935-2b54c9a9a852" isOneWay="false" action="http://speller.yandex.net/services/spellservice/checkTexts" name="checkTexts" bindingOperationName="checkTexts" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="4c3845f7-9973-45ea-8c3e-d04d51892373" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://speller.yandex.net/services/spellservice</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:spel="http://speller.yandex.net/services/spellservice">\r
+   <soap:Header/>\r
+   <soap:Body>\r
+      <spel:CheckTextsRequest lang="?" options="0" format="">\r
+         <!--Zero or more repetitions:-->\r
+         <spel:text>?</spel:text>\r
+      </spel:CheckTextsRequest>\r
+   </soap:Body>\r
+</soap:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://speller.yandex.net/services/spellservice/SpellServiceSoap/checkTextsRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite id="a698139c-9179-4bb6-ba51-ab7a17a0b726" name="SOAPbasics"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="0cfcd2de-7fdd-4f75-b0e5-9029cb9d156e" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TestOverTheLimitText" searchProperties="true"><con:description>run spell check of the text which exceeds the limit of 10000 symbols and 10 KB
+in this text the errors are injected in 3 words which fit intop 10000 symbols and in 3 words which are in the way over 10 000
+expected to veiry those 3 errors within 10000 symb, everython over 10000 won't be verified</con:description><con:settings/><con:testStep type="request" name="SOAP Request" id="ea809a40-016a-45cb-8c0b-4470042b8ed3"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SpellServiceSoap</con:interface><con:operation>checkText</con:operation><con:request name="SOAP Request" id="60db2772-b3d6-44e1-a1c3-04bbf4887b61"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://speller.yandex.net/services/spellservice</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:spel="http://speller.yandex.net/services/spellservice">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <spel:CheckTextRequest>\r
+         <spel:text>${huge_paragraph#huge_paragraph} 
+         </spel:text>
+         
+      </spel:CheckTextRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="c081f9e6-ac7d-4dd1-9813-64285ad8d95c"/><con:assertion type="Simple Contains" id="8ca8e7e8-aeb5-4d40-8724-76e7bcf2c549" name="Contains"><con:configuration><token/><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="GroovyScriptAssertion" id="2def985e-52f5-4e50-9d9e-6bc99e643ce3" name="Script Assertion"><con:configuration><scriptText>def groovyUtils = new com.eviware.soapui.support.GroovyUtils( context )
+def holder = groovyUtils.getXmlHolder( "SOAP Request#Response")
+holder.namespaces["ns"] = "http://speller.yandex.net/services/spellservice"
+
+def numErr = holder.getDomNodes("//ns:error").length
+
+
+assert numErr == 4</scriptText></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="properties" name="huge_paragraph" id="6f2a3da9-60c1-4545-8069-549a2b807665"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>huge_paragraph</con:name><con:value>сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня  сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня  сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня  сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня  сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня  сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня  сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня  сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сигодня сеодня сегодя  одня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня  сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня  сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня  сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня  сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня  сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня  сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня  сегодня сегодня сегодня сегодня сегодня сеодня сигодня сегодя сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня</con:value></con:property></con:properties></con:config></con:testStep><con:properties><con:property><con:name>data</con:name><con:value>сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня  сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня  сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня  сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня  сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня  сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня  сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня  сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сигодня сеодня сегодя  одня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня  сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня  сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня  сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня  сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня  сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня  сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня  сегодня сегодня сегодня сегодня сегодня сеодня сигодня сегодя сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня сегодня</con:value></con:property></con:properties></con:testCase><con:testCase id="5a3289b4-b2f0-4987-a51b-b63636fd8a23" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TestNonLatSymbol" searchProperties="true"><con:description>injecting non-latyn symbol into the word which is very actually very similar to the english word
+expected: to return msg that the word is not in the dict or just return the same word?</con:description><con:settings/><con:testStep type="request" name="SOAP Request" id="777da7eb-6e5e-4c1f-836d-db61a47d25ed"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SpellServiceSoap12</con:interface><con:operation>checkText</con:operation><con:request name="SOAP Request" id="89ab175c-ebd6-41eb-a2c0-bae37dc8926c"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://speller.yandex.net/services/spellservice</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:spel="http://speller.yandex.net/services/spellservice">\r
+   <soap:Header/>\r
+   <soap:Body>\r
+      <spel:CheckTextRequest lang="en" options="0" format="">\r
+         <spel:text>${Non-lat-symbol#non_lat_symb} </spel:text>\r
+      </spel:CheckTextRequest>\r
+   </soap:Body>\r
+</soap:Envelope>]]></con:request><con:assertion type="SOAP Response" id="1798993e-9d55-4648-b440-7d4d132b64ce"/><con:assertion type="GroovyScriptAssertion" id="96270ab1-d92c-4ec5-b4bf-e2d2538d57ac" name="Script Assertion"><con:configuration><scriptText>def groovyUtils = new com.eviware.soapui.support.GroovyUtils( context )
+def holder = groovyUtils.getXmlHolder( "SOAP Request#Response")
+holder.namespaces["ns"] = "http://speller.yandex.net/services/spellservice"
+// Obtain the number of links in paragraphs
+def numErr = holder.getDomNodes("//ns:error").length
+
+
+assert numErr == 1
+assert  holder.getNodeValue("//ns:word") ==context.expand('${Non-lat-symbol#non_lat_symb}')</scriptText></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="properties" name="Non-lat-symbol" id="c0f03a06-1723-4753-bd47-aa5d7235e073"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>non_lat_symb</con:name><con:value>Spañish</con:value></con:property></con:properties></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="a5b8a45b-fb4b-4862-a438-b47f91253308" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TestOptionalParam1" searchProperties="true"><con:description>try different combinations of options:
+options = 2 + 4: ignore internet addresses and ignore the words with numbers</con:description><con:settings/><con:testStep type="request" name="SOAP Request" id="3e46347f-6c16-43bf-ad34-36725a39c895"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SpellServiceSoap</con:interface><con:operation>checkText</con:operation><con:request name="SOAP Request" id="a1cb9608-3935-40a2-b9fa-cc50f4fa9a27"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://speller.yandex.net/services/spellservice</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:spel="http://speller.yandex.net/services/spellservice">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <spel:CheckTextRequest lang="ru,en,uk" options="6" format="">\r
+         <spel:text>${row#word_with_error} ${row#word_with_numbers} ${row#url}</spel:text>\r
+      </spel:CheckTextRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="3db18e14-785e-45ba-b258-4b1a18f558c3"/><con:assertion type="SOAP Fault Assertion" id="bd92d611-50e7-456d-8ae4-c2b258789e38"/><con:assertion type="GroovyScriptAssertion" id="b525fe10-2372-4f47-b662-48c9bc611b9c" name="Script Assertion"><con:configuration><scriptText>def groovyUtils = new com.eviware.soapui.support.GroovyUtils( context )
+def holder = groovyUtils.getXmlHolder( "SOAP Request#Response")
+holder.namespaces["ns"] = "http://speller.yandex.net/services/spellservice"
+
+def numErr = holder.getDomNodes("//ns:error").length
+
+
+assert numErr == 1
+assert  holder.getNodeValue("//ns:word") ==context.expand('${row#word_with_error}')</scriptText></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="properties" name="row" id="d8aa0f24-43e9-4f66-8aae-fe3cb83c0eea"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>word_with_error</con:name><con:value>Клий</con:value></con:property><con:property><con:name>word_with_numbers</con:name><con:value> авп17х4534 </con:value></con:property><con:property><con:name>url</con:name><con:value>https://www.moment.ru/ru.html</con:value></con:property></con:properties></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="0a2c785d-dd5f-41e5-834c-498ba86ecfaa" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TestOptionParam2" searchProperties="true"><con:description>settings combination: 
+options = 8 +4: detect the repetion of the word as an error and ignore url-s
+</con:description><con:settings/><con:testStep type="request" name="SOAP Request" id="381fa020-f68f-4f81-9b3e-d83f5bd727b1"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SpellServiceSoap</con:interface><con:operation>checkText</con:operation><con:request name="SOAP Request" id="c5ad1ef9-1b45-4a98-9c6a-27766b321363"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://speller.yandex.net/services/spellservice</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:spel="http://speller.yandex.net/services/spellservice">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <spel:CheckTextRequest lang="en,ru,uk" options="12" format="" >\r
+         <spel:text>${row#word_to_repeat} ${row#word_to_repeat} ${row#correct_word} ${row#url}</spel:text>\r
+      </spel:CheckTextRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="4c1c18e9-49a7-4c74-a16e-b2116b1bfa43"/><con:assertion type="SOAP Fault Assertion" id="cb08ef35-3476-4164-9685-a141b3b36311"/><con:assertion type="GroovyScriptAssertion" id="69624bf1-8b21-4a50-ba98-365ec4b53713" name="Script Assertion"><con:configuration><scriptText>def groovyUtils = new com.eviware.soapui.support.GroovyUtils( context )
+def holder = groovyUtils.getXmlHolder( "SOAP Request#Response")
+holder.namespaces["ns"] = "http://speller.yandex.net/services/spellservice"
+
+def numErr = holder.getDomNodes("//ns:error").length
+
+err_code = holder.getNodeValue("//ns:error/@code")
+assert numErr == 1
+assert  err_code =="2"
+log.info "Speller code error is " + err_code
+assert  holder.getNodeValue("//ns:word") ==context.expand('${row#word_to_repeat}')</scriptText></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="properties" name="row" id="0e83a78b-d361-4a25-8dee-b1f9a769687a"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>word_to_repeat</con:name><con:value>glue</con:value></con:property><con:property><con:name>correct_word</con:name><con:value>moment</con:value></con:property><con:property><con:name>url</con:name><con:value>https://www.moment.ru/ru.html</con:value></con:property></con:properties></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="c3a98f8b-e296-411c-a186-a43a081fec58" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TestOptionParam3" searchProperties="true"><con:description>test settings combination: 512 + 8
+ignore capitalization errors and repeated words</con:description><con:settings/><con:testStep type="request" name="SOAP Request" id="4f367752-1207-4354-a351-6d2f024ce84f"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SpellServiceSoap</con:interface><con:operation>checkText</con:operation><con:request name="SOAP Request" id="aff31020-37ef-40e9-9735-36a78fc598d8"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://speller.yandex.net/services/spellservice</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:spel="http://speller.yandex.net/services/spellservice">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <spel:CheckTextRequest lang="ru,en,uk" options="520" format="html">\r
+         <spel:text>${row#supposed_to_be_capitalized} ${row#word_to_repeat} ${row#word_to_repeat}</spel:text>\r
+      </spel:CheckTextRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="8ee8c54c-2496-417a-99f5-564d0053fa72"/><con:assertion type="SOAP Fault Assertion" id="f610004d-211c-4ad3-b778-7cda3d23bae9"/><con:assertion type="GroovyScriptAssertion" id="5c41e9e7-e3f6-4a23-b05f-09d03865f21a" name="Script Assertion"><con:configuration><scriptText>def groovyUtils = new com.eviware.soapui.support.GroovyUtils( context )
+def holder = groovyUtils.getXmlHolder( "SOAP Request#Response")
+holder.namespaces["ns"] = "http://speller.yandex.net/services/spellservice"
+
+def numErr = holder.getDomNodes("//ns:error").length
+
+err_code = holder.getNodeValue("//ns:error/@code")
+assert numErr == 1
+assert  err_code =="2"
+log.info "Speller code error is " + err_code
+assert  holder.getNodeValue("//ns:word") ==context.expand('${row#word_to_repeat}')</scriptText></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="properties" name="row" id="1e84d679-9726-41ba-96b2-ee53247ab180"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>supposed_to_be_capitalized</con:name><con:value>volga</con:value></con:property><con:property><con:name>word_to_repeat</con:name><con:value>river</con:value></con:property></con:properties></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="055f89be-87db-4a7b-91de-8145965d2ac1" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TestOptionParam4" searchProperties="true"><con:description>incorrect "options" parameter number
+over the top:
+600</con:description><con:settings/><con:testStep type="request" name="SOAP Request" id="90062d20-e7fa-43df-8bba-88a5044fc350"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SpellServiceSoap</con:interface><con:operation>checkText</con:operation><con:request name="SOAP Request" id="df4320cd-a8a3-4f61-bbeb-8fa1982f54b9"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://speller.yandex.net/services/spellservice</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:spel="http://speller.yandex.net/services/spellservice">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <spel:CheckTextRequest lang="ru,en,uk" options="600" format="">\r
+         <spel:text>${row#word_with_error} ${row#word_with_numbers} ${row#url}</spel:text>\r
+      </spel:CheckTextRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="e94e9e51-573e-4dfb-afe5-f85af8dcdd7c"/><con:assertion type="SOAP Fault Assertion" id="54b67537-fcd6-42f7-b5df-7384e9e16ba6"/><con:assertion type="GroovyScriptAssertion" id="865c3e8b-6196-4881-9975-75425b5fd0f0" name="Script Assertion"><con:configuration><scriptText>def groovyUtils = new com.eviware.soapui.support.GroovyUtils( context )
+def holder = groovyUtils.getXmlHolder( "SOAP Request#Response")
+holder.namespaces["ns"] = "http://speller.yandex.net/services/spellservice"
+
+def numErr = holder.getDomNodes("//ns:error").length
+
+
+assert numErr >= 3
+</scriptText></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="properties" name="row" id="7d3bb34c-7fe2-4fb6-8ac2-534bb32a446d"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>word_with_error</con:name><con:value>новгарод</con:value></con:property><con:property><con:name>word_with_numbers</con:name><con:value> авп17х4534</con:value></con:property><con:property><con:name>url</con:name><con:value> http://htmlbook.ru/content/formatirovanie-teksta</con:value></con:property></con:properties></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="7d0845ed-c690-4b86-ba31-93146a1c85db" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TestOptionParam6_fails" searchProperties="true"><con:description>enabled all options: 526
+
+assume bug here as the request returns the error code '2': "word repetition"
+but it is supposed to ignore word repetitions with all options enabled</con:description><con:settings/><con:testStep type="request" name="SOAP Request" id="dae2c945-2b53-4cca-aed3-9d5f2e958e71"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SpellServiceSoap</con:interface><con:operation>checkText</con:operation><con:request name="SOAP Request" id="792b7479-0fa5-4056-abf9-3547b6559060"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://speller.yandex.net/services/spellservice</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:spel="http://speller.yandex.net/services/spellservice">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <spel:CheckTextRequest lang="en,uk,ru" options="526" format="">\r
+         <spel:text>${row#word_with_error_to_repeat_capitalized} ${row#word_with_error_to_repeat_capitalized} ${row#word_with_numbers} ${row#url}</spel:text>\r
+      </spel:CheckTextRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="69b7f75d-6253-42be-bfee-eabf73a5dd93"/><con:assertion type="SOAP Fault Assertion" id="f144c567-48bd-4897-a906-2efe3a845dcd"/><con:assertion type="GroovyScriptAssertion" id="de03e6f7-26d7-499d-91d8-477e01333cb0" name="Script Assertion"><con:configuration><scriptText>def groovyUtils = new com.eviware.soapui.support.GroovyUtils( context )
+def holder = groovyUtils.getXmlHolder( "SOAP Request#Response")
+holder.namespaces["ns"] = "http://speller.yandex.net/services/spellservice"
+
+def resp = holder.getDomNodes("//ns:error")
+def numErrs = resp.length
+
+for(String  err: holder.getNodeValues( "//ns:error/@code" )){
+	 log.info "err : [$err]" 
+      assert err == "1" ||  err == "4"
+}
+   
+
+</scriptText></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="properties" name="row" id="0ebae0f8-5473-4de5-ba7f-1603bd7cd67c"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>word_with_error_to_repeat_capitalized</con:name><con:value>новгарод</con:value></con:property><con:property><con:name>word_with_numbers</con:name><con:value>авп17х4534</con:value></con:property><con:property><con:name>url</con:name><con:value>http://htmlbook.ru/content/formatirovanie-teksta</con:value></con:property></con:properties></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="2c9762f5-6e71-428e-8471-0286a9358b7c" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TestDDT" searchProperties="true"><con:description>uspporting 3 lang</con:description><con:settings/><con:testStep type="properties" name="phrase" id="de08ded8-262a-4018-98d2-e33448f41bd1"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>phrase</con:name><con:value>beautiful girl</con:value></con:property></con:properties></con:config></con:testStep><con:testStep type="request" name="SOAP Request" id="085e33fc-f10b-4545-b986-9f099b1baf47"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SpellServiceSoap12</con:interface><con:operation>checkTexts</con:operation><con:request name="SOAP Request" id="70672c59-4452-463d-a2a0-b2bb4f983421"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://speller.yandex.net/services/spellservice</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:spel="http://speller.yandex.net/services/spellservice">\r
+   <soap:Header/>\r
+   <soap:Body>\r
+       <spel:CheckTextsRequest lang="uk,ru,en" options="8" format="">
+         <!--Zero or more repetitions:-->
+         <spel:text>${phrase#phrase}</spel:text>
+      </spel:CheckTextsRequest>
+
+   </soap:Body>\r
+</soap:Envelope>]]></con:request><con:assertion type="SOAP Response" id="13e9451a-20e9-4877-add3-ab119df8eeb6"/><con:assertion type="SOAP Fault Assertion" id="756dd703-340d-41e6-99a6-6a75644b30e1"/><con:assertion type="GroovyScriptAssertion" id="777cd080-d8b2-4286-b965-c3ad488c386f" name="Script Assertion"><con:configuration><scriptText>def groovyUtils = new com.eviware.soapui.support.GroovyUtils( context )
+def holder = groovyUtils.getXmlHolder( "SOAP Request#Response")
+holder.namespaces["ns"] = "http://speller.yandex.net/services/spellservice"
+// Obtain the number of links in paragraphs
+def numErr = holder.getDomNodes("//ns:error").length
+
+
+assert numErr == 0
+</scriptText></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="groovy" name="DDT" id="f4afa06e-832f-465b-b383-a3be9c4e7505"><con:settings/><con:config><script>def ukr = 'красива дtвчина дівчина'
+def rus = 'красивая девушка'
+def en = 'beautiful girl'
+
+def props = [ukr, rus, en]
+
+for(String phrase: props){
+	step1 = testRunner.testCase.getTestStepByName("phrase")
+	step1.setPropertyValue("phrase", phrase)
+	step2 = testRunner.testCase.getTestStepByName("SOAP Request")
+	
+	def runner =step2.run(testRunner, context)
+	
+}
+</script></con:config></con:testStep><con:properties/></con:testCase><con:properties><con:property><con:name>options1</con:name><con:value> lang="ru,en,uk" options="6" format=""</con:value></con:property></con:properties></con:testSuite><con:properties><con:property><con:name>ProjectShortName</con:name><con:value>yandex</con:value></con:property></con:properties><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
