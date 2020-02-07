@@ -10,3 +10,9 @@ Most test assert expected error code parsed from the json responce of the RestAP
 https://yandex.ru/dev/speller/doc/dg/reference/error-codes-docpage/
 
 
+The folder "YandexSpellerAPIRepresentation"
+Based on the documentation to the restAPI the following classes were developed:
+SpellerrestAPI.py - for forming the parameters to pass out of available param options and for executing the request using one of the RestAPI methods
+SpellerresponseParser.py - the possible error codes and fields which might be needed for assertions
+
+test_yandex_speller.py is a file with one test showing how to use developed api for testing
